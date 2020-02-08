@@ -70,16 +70,28 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|day|string|
-|time|string|
 |address|string|
 |user_id|integer|null:false,foreign_key:true|
+|gym_time_id|integer|null:false,foreign_key:true|
 
 ### Association
+- has_many :gym_times
 - belongs_to :user
 - belongs_to :practice
 
-## templates モデル
+## gym_timesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|start_time|time|null:false|
+|exit_time|time|
+
+### Association
+- belongs_to :gym
+
+## templatesテーブル
+|Column|Type|Options|
+|------|----|-------|
 |body|text|null,false|
 |image|string|
 |user_id|null: false,foreign_key:true|
