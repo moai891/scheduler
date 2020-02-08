@@ -1,24 +1,90 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+|Column|Type|Options|
+|------|----|-------|
+|name|string|index:true,null: false|
+|mail|string|null: false, unipue: true|
 
-* Ruby version
+### Association
+- has_many :practices,through: members
+- has_many :messages
+- has_many :members
+- has_many :gyms
+- has_many :templates
 
-* System dependencies
+## groupsテーブル
 
-* Configuration
+|Column|Type|Options|
+|------|----|-------|
+|name|string|index:true,null: false,unique:true|
 
-* Database creation
+### Association
+- has_many :practices
 
-* Database initialization
 
-* How to run the test suite
+## practicesテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+|Column|Type|Options|
+|------|----|-------|
+|title|string|null: false|
+|place|string|
+|daytime|string|
+|body|text|
+|group_id|integer|null: false,foreign_key:true|
+|gym_id|integer|null: false,foreign_key:true|
+|template_id|integer|null: false,foreign_key:true|
 
-* Deployment instructions
+### Association
+- has_many :users,through: members
+- has_many :gyms
+- has_many :templates
+- belongs_to :group
 
-* ...
+## membersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|practice_id|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :practice
+
+## messagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|body|text|
+|image|string|
+|practice_id|integer|null:false,foreign_key:true|
+|user_id|integer|null:false,foreign_key:true|
+
+### Association
+- belongs_to :practice
+- belongs_to :user
+
+## gymsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|day|string|
+|time|string|
+|address|string|
+|user_id|integer|null:false,foreign_key:true|
+
+### Association
+- belongs_to :user
+- belongs_to :practice
+
+## templates モデル
+|body|text|null,false|
+|image|string|
+|user_id|null: false,foreign_key:true|
+
+### Association
+- belongs_to :group
+- belongs_to :user
+- belongs_to :practice
