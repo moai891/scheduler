@@ -1,24 +1,82 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+|Column|Type|Options|
+|------|----|-------|
+|name|string|index:true,null: false|
+|mail|string|null: false, unipue: true|
 
-* Ruby version
+### Association
+- 
+- belongs_to :user
 
-* System dependencies
+## groupsテーブル
 
-* Configuration
+|Column|Type|Options|
+|------|----|-------|
+|name|string|index:true,null: false,unique:true|
 
-* Database creation
+- belongs_to :group
+- belongs_to :user
 
-* Database initialization
+## messagesテーブル
 
-* How to run the test suite
+|Column|Type|Options|
+|------|----|-------|
+|body|text|
+|image|string|
+|group_id|integer|null:false,foreign_key:true|
+|user_id|integer|null:false,foreign_key:true|
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :group
+- belongs_to :user
 
-* Deployment instructions
+## gymsテーブル
 
-* ...
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|day|string|
+|time|string|
+|address|string|
+|user_id|integer|null:false,foreign_key:true|
+
+
+
+### Association
+- belongs_to :group
+- belongs_to :user
+
+## friendsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false,foreign_key:true|
+||
+
+
+### Association
+- belongs_to :group
+- belongs_to :user
+
+## practicesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|title|string|null: false|
+|place|string|
+|daytime|string|
+|body|text|
+|group_id|integer|null: false,foreign_key:true|
+
+
+### Association
+- belongs_to :group
+- belongs_to :user
+
+## templates モデル
+|body|text|null,false|
+|image|string|
+|user_id|null: false,foreign_key:true|
