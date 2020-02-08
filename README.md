@@ -8,8 +8,11 @@
 |mail|string|null: false, unipue: true|
 
 ### Association
-- 
-- belongs_to :user
+- has_many :practices,through: members
+- has_many :messages
+- has_many :members
+- has_many :gyms
+- has_many :templates
 
 ## groupsテーブル
 
@@ -18,8 +21,36 @@
 |name|string|index:true,null: false,unique:true|
 
 ### Association
+- has_many :practices
+
+
+## practicesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|title|string|null: false|
+|place|string|
+|daytime|string|
+|body|text|
+|group_id|integer|null: false,foreign_key:true|
+|gym_id|integer|null: false,foreign_key:true|
+|template_id|integer|null: false,foreign_key:true|
+
+### Association
+- has_many :users,through: members
+- has_many :gyms
+- has_many :templates
 - belongs_to :group
+
+## membersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|practice_id|integer|null: false, foreign_key: true|
+
+### Association
 - belongs_to :user
+- belongs_to :practice
 
 ## messagesテーブル
 
@@ -27,11 +58,11 @@
 |------|----|-------|
 |body|text|
 |image|string|
-|group_id|integer|null:false,foreign_key:true|
+|practice_id|integer|null:false,foreign_key:true|
 |user_id|integer|null:false,foreign_key:true|
 
 ### Association
-- belongs_to :group
+- belongs_to :practice
 - belongs_to :user
 
 ## gymsテーブル
@@ -44,40 +75,16 @@
 |address|string|
 |user_id|integer|null:false,foreign_key:true|
 
-
-
 ### Association
-- belongs_to :group
 - belongs_to :user
-
-## friendsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false,foreign_key:true|
-||
-
-
-### Association
-- belongs_to :group
-- belongs_to :user
-
-## practicesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|title|string|null: false|
-|place|string|
-|daytime|string|
-|body|text|
-|group_id|integer|null: false,foreign_key:true|
-
-
-### Association
-- belongs_to :group
-- belongs_to :user
+- belongs_to :practice
 
 ## templates モデル
 |body|text|null,false|
 |image|string|
 |user_id|null: false,foreign_key:true|
+
+### Association
+- belongs_to :group
+- belongs_to :user
+- belongs_to :practice
