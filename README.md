@@ -17,6 +17,7 @@
 |------|----|-------|
 |name|string|index:true,null: false,unique:true|
 
+### Association
 - belongs_to :group
 - belongs_to :user
 
