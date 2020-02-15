@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Scheduler
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .header
+      = link_to "Scheduler", "#" ,class: "header__title"
+      .header__btn
+        = link_to "練習を投稿", "#" ,class: "header__btn__content"
+        = link_to "ログアウト", "#" ,class: "header__btn__content"
+
+    %nav.nav
+      %ul
+        - menuStr = Array["About","My practice","My gym","Group"]
+        - menuStr.each do |str|
+          %li
+            = link_to "#{str}", "#" , class: "nav__content"
+    
+    .side-bar
+    
+                
+    = yield

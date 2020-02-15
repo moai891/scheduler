@@ -1,0 +1,70 @@
+.contents{
+  background-color: #FFFFFF;
+  height: calc(100Vh - 8em);
+  width: calc(100% - 300px);
+  float: right;
+  padding: 20px 40px;
+}
+
+.content{
+  height: 6em;
+  width: 100%;
+  border-radius: 3px;
+  border: solid 2px #000000;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  &__day{
+    font-size: 2em;
+  }
+
+  &__title{
+    font-size: 1.2em;
+  }
+
+  &__center{
+    font-size: 1.2em;
+  }
+
+  &__attendance{
+    font-size: 1.2em;
+  }
+
+  &__attendance__btn{
+    font-size: 1.0em;
+    display: flex;
+    flex-direction: column;
+
+    &--attend{
+      width: 80px;
+      padding: 5px 0px;
+      text-align: center;
+      display: inline-block;
+      margin-bottom: 5px;
+      border-radius: 3px;
+      border: solid 2px #000000;
+      transition: .4s
+    }
+
+    &--attend:hover {
+      background: #67c5ff;
+      color: #FFFFFF;
+    }
+  
+    &--absence{
+      width: 80px;
+      padding: 5px 0px;
+      text-align: center;
+      display: inline-block;
+      border-radius: 3px;
+      border: solid 2px #000000;
+      transition: .4s
+    }
+
+    &--absence:hover {
+      background: #67c5ff;
+      color: #FFFFFF;
+    }    
+  }
+}
